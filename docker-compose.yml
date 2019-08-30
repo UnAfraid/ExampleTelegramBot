@@ -1,0 +1,13 @@
+version: "2.1"
+
+services:
+    telegram_bot:
+        image: docker.pkg.github.com/unafraid/exampletelegrambot/bot
+        container_name: example_telegram_bot
+        build: 
+          context: .
+        restart: on-failure
+        environment:
+            - EXAMPLE_TG_BOT_USERNAME=${EXAMPLE_TG_BOT_USERNAME}
+            - EXAMPLE_TG_BOT_TOKEN=${EXAMPLE_TG_BOT_TOKEN}
+            - EXAMPLE_TG_BOT_ADMIN_IDS=${EXAMPLE_TG_BOT_ADMIN_IDS}

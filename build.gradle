@@ -12,7 +12,12 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    // Add your dependencies here
+    runtime (group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "2.12.1")
+    runtime (group: "org.apache.logging.log4j", name: "log4j-core", version: "2.12.1")
+
+    compile group: 'com.github.unafraid.telegram-apis', name: 'CoreAPI', version: '1.0.5'
+    compile group: 'com.github.unafraid.telegram-apis', name: 'InlineMenuAPI', version: '1.0.5'
+    compile(group: "org.telegram", name: "telegrambots", version: "4.4.0.1") // Telegram Bots API
     testCompile(group: "junit", name:"junit", version:"4.12")
 }
 
@@ -21,7 +26,7 @@ jar {
         attributes(
             "Built-By": System.getProperty("user.name"),
             // Update with your main class example below:
-            // "Main-Class": "com.github.unafraid.gradle.single.Main",
+            "Main-Class": "com.github.unafraid.example.telegrambot.Main",
             "Class-Path": configurations.runtime.collect({ "lib/" + it.getName() }).join(" ")
         )
     }

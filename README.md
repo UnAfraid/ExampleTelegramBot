@@ -1,44 +1,76 @@
-# Gradle Single Project template
-This repository is a template for gradle single project
+# Example Telegram Bot
+This repository contains an example of telegram bot written in Java
 
-Once you clone the repository create your own package and add the main class into build.gradle
+Current version supports the following commands:
+* /help - Displays help about all or specified command
+* /whoami - Displays information about the person who wrote the command: User Id, Name and chat type
+* /start - The default bot command, shows greeting message
+* /menu - Shows example of Inline Menu with buttons
 
-```gradle
-jar {
-    manifest {
-        attributes(
-            "Built-By": System.getProperty("user.name"),
-            // Update with your main class example below:
-            // "Main-Class": "com.github.unafraid.gradle.single.Main",
-            "Class-Path": configurations.runtime.collect({ "lib/" + it.getName() }).join(" ")
-        )
-    }
-}
+### Configuration
+Configuration is supplied through Environment Variables:
+```env
+EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
+EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
+EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
 ```
+Click here to talk to BotFather [BotFather](http://t.me/BotFather)
 
-In order to add new dependency add them inside the following block:
-```gradle
-dependencies {
-    // Add your dependencies here, example:
-    compile(group: "org.telegram", name: "telegrambots", version: "4.4.0.1") // Telegram Bots API
-    testCompile(group: "junit", name:"junit", version:"4.12")
-}
-```
+There are multiple ways to start this example, here are two:
 
-In order to build the project execute in terminal within the folder where this template is cloned the following command:
+### Docker with docker-compose
+You can run this example with docker.
 
-### For Windows
-`gradlew.bat installDist`
+First create new file called .env with the content mentioned [Environment Variables](#configuration) above.
+1. Create and start the container
+    ```shell script
+    docker-compose up -d
+    ```
+2. Check the logs for errors
+    ```shell script
+    docker-compose logs
+    ```
+3. If bot is working correctly you should see the following logs
+    ```shell script
+    Attaching to example_telegram_bot
+    example_telegram_bot | [20:30:06] [INFO] Main: Initializing ** Your bot name here** ...
+    example_telegram_bot | [20:30:06] [INFO] Main: Authorized admin ids: [**Your ids here**]
+    example_telegram_bot | WARNING: An illegal reflective access operation has occurred ...
+    example_telegram_bot | [20:30:07] [INFO] Main: Initialization done
+    ```
+ 4. If you want to stop the bot
+    ```shell script
+    docker-compose down
+    ```
 
-### Mac/Linux
-`./gradlew installDist`
+### Source
+Alternatively you can run the example from source
+1. Clone the repository
+     ```shell script
+    git clone https://github.com/UnAfraid/ExampleTelegramBot.git
+    ```
+2. Build the source
+    ```shell script
+   # For Windows
+    gradlew.bat installDist
 
-Once built the you can find the output in build\install\{Name of your project here}.
-- Replace {Name of your project here} with your project name example Gradle-SingleProject which will result into `build\install\Gradle-SingleProject`
-
-If you have added any dependency it would be inside folder 'lib' and your {Name of your project here}.jar would contain Class-Path which would include them.
-
-In order to run your application run the following command:
-- Ensure you are inside build\install\{Name of your project here}
-
-`java -jar {Name of your project here}.jar`
+   # For Linux/Mac
+   ./gradlew installDist
+    ```
+3. Run the bot
+    ```shell script
+    set EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
+    set EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
+    set EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
+    cd build/install/ExampleTelegramBot
+   java -jar ExampleTelegramBot.jar
+    ```
+ 4. If bot is working correctly you should see the following logs
+    ```shell script
+    Attaching to example_telegram_bot
+    [20:30:06] [INFO] Main: Initializing ** Your bot name here** ...
+    [20:30:06] [INFO] Main: Authorized admin ids: [**Your ids here**]
+    WARNING: An illegal reflective access operation has occurred ...
+    [20:30:07] [INFO] Main: Initialization done
+    ```
+     
