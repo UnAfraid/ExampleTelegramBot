@@ -1,0 +1,41 @@
+apply plugin: "java"
+apply plugin: "distribution"
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    // Add your dependencies here
+    testCompile(group: "junit", name:"junit", version:"4.12")
+}
+
+jar {
+    manifest {
+        attributes(
+            "Built-By": System.getProperty("user.name"),
+            // Update with your main class example below:
+            // "Main-Class": "com.github.unafraid.gradle.single.Main",
+            "Class-Path": configurations.runtime.collect({ "lib/" + it.getName() }).join(" ")
+        )
+    }
+}
+
+distributions {
+    version = ""
+    main {
+        contents {
+            into ("lib") {
+                from(configurations.runtime)
+            }
+            from(jar)
+            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        }
+    }
+}
