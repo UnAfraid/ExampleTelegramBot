@@ -1,5 +1,5 @@
 # Example Telegram Bot
-This repository contains an example of telegram bot written in Java
+This repository contains an example of telegram bot written in Java (11 and above)
 
 Current version supports the following commands:
 * /help - Displays help about all or specified command
@@ -14,7 +14,7 @@ EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
 EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
 EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
 ```
-Click here to talk to BotFather [BotFather](http://t.me/BotFather)
+Click here to talk to [BotFather](https://t.me/BotFather)
 
 There are multiple ways to start this example, here are two:
 
@@ -59,15 +59,26 @@ Alternatively you can run the example from source
     ```
 3. Run the bot
     ```shell script
+    # Set Environment Variables
+   
+    # For Windows
     set EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
     set EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
     set EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
+
+    # For Linux/Mac
+    export EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
+    export EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
+    export EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
+    
+    # Navigate to the bot build directory
     cd build/install/ExampleTelegramBot
-   java -jar ExampleTelegramBot.jar
+
+    # Run the bot
+    java -jar ExampleTelegramBot.jar
     ```
  4. If bot is working correctly you should see the following logs
     ```shell script
-    Attaching to example_telegram_bot
     [20:30:06] [INFO] Main: Initializing ** Your bot name here** ...
     [20:30:06] [INFO] Main: Authorized admin ids: [**Your ids here**]
     WARNING: An illegal reflective access operation has occurred ...
