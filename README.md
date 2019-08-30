@@ -1,4 +1,6 @@
-# Example Telegram Bot
+# Example Telegram Bot [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FUnAfraid%2FExampleTelegramBot%2Fbadge&style=flat)](https://actions-badge.atrox.dev/UnAfraid/ExampleTelegramBot/goto) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+
+
 This repository contains an example of telegram bot written in Java (11 and above)
 
 Current version supports the following commands:
