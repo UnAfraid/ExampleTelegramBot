@@ -1,5 +1,10 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "5.1.0"
+}
+
 apply plugin: "java"
 apply plugin: "distribution"
+apply plugin: "com.github.johnrengelman.shadow"
 
 sourceCompatibility = JavaVersion.VERSION_11
 
@@ -44,3 +49,8 @@ distributions {
         }
     }
 }
+
+task stage() {
+    dependsOn clean, shadowJar
+}
+shadowJar.mustRunAfter clean
