@@ -17,4 +17,4 @@ WORKDIR /app
 
 COPY --from=builder /tmp/${PROJECT_NAME}/build/install/${PROJECT_NAME} /app
 
-CMD java -jar /app/${PROJECT_NAME}.jar
+CMD java --add-opens java.base/java.lang=ALL-UNNAMED -jar /app/${PROJECT_NAME}.jar
