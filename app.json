@@ -1,0 +1,31 @@
+{
+  "name": "Telegram Bot Example",
+  "description": "A barebones Telegram bot using java",
+  "repository": "https://github.com/UnAfraid/ExampleTelegramBot",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg",
+  "keywords": [
+    "java",
+    "telegram-bot",
+    "example"
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "env": {
+    "EXAMPLE_TG_BOT_USERNAME": {
+      "description": "The bot name from BotFather",
+      "value": ""
+    },
+    "EXAMPLE_TG_BOT_TOKEN": {
+      "description": "The token from BotFather",
+      "value": ""
+    },
+    "EXAMPLE_TG_BOT_ADMIN_IDS": {
+      "description": "User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)",
+      "value": ""
+    }
+  }
+}
