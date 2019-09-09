@@ -8,12 +8,6 @@
     "telegram-bot",
     "example"
   ],
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "free"
-    }
-  },
   "env": {
     "EXAMPLE_TG_BOT_USERNAME": {
       "description": "The bot name from BotFather",
