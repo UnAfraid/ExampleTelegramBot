@@ -1,0 +1,5 @@
+{
+  "description": "A barebones Telegram bot using java.",
+  "projectId": "cloudrun",
+  "repoId": "ExampleTelegramBot"
+}
