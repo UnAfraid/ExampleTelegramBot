@@ -1,5 +1,5 @@
 {
-  "name": "Telegram Bot Example",
+  "name": "telegram-bot-example",
   "description": "A barebones Telegram bot using java",
   "repository": "https://github.com/UnAfraid/ExampleTelegramBot",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg",
