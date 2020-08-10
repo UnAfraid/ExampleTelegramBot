@@ -18,67 +18,67 @@ import java.util.List;
  * @author UnAfraid
  */
 public class Main {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
-	private static final String TOKEN = System.getenv("EXAMPLE_TG_BOT_TOKEN");
-	private static final String USERNAME = System.getenv("EXAMPLE_TG_BOT_USERNAME");
-	private static final String ADMIN_IDS = System.getenv("EXAMPLE_TG_BOT_ADMIN_IDS");
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-	public static void main(String[] args) throws Exception {
-		if (TOKEN == null || TOKEN.isBlank()) {
-			LOGGER.warn("EXAMPLE_TG_BOT_TOKEN is not defined!");
-			return;
-		} else if (USERNAME == null || USERNAME.isBlank()) {
-			LOGGER.warn("EXAMPLE_TG_BOT_USERNAME is not defined!");
-			return;
-		} else if (ADMIN_IDS == null || ADMIN_IDS.isBlank()) {
-			LOGGER.warn("EXAMPLE_TG_BOT_ADMIN_IDS is not defined!");
-			return;
-		}
+    public static void main(String[] args) throws Exception {
+        final String token = System.getenv("EXAMPLE_TG_BOT_TOKEN");
+        final String username = System.getenv("EXAMPLE_TG_BOT_USERNAME");
+        final String adminIds = System.getenv("EXAMPLE_TG_BOT_ADMIN_IDS");
+        if (token == null || token.isBlank()) {
+            LOGGER.warn("EXAMPLE_TG_BOT_TOKEN is not defined!");
+            return;
+        } else if (username == null || username.isBlank()) {
+            LOGGER.warn("EXAMPLE_TG_BOT_USERNAME is not defined!");
+            return;
+        } else if (adminIds == null || adminIds.isBlank()) {
+            LOGGER.warn("EXAMPLE_TG_BOT_ADMIN_IDS is not defined!");
+            return;
+        }
 
-		LOGGER.info("Initializing {} ...", USERNAME);
+        LOGGER.info("Initializing {} ...", username);
 
-		final List<Integer> adminIds = parseAdminIds();
-		if (adminIds.isEmpty()) {
-			LOGGER.warn("Couldn't find admin ids");
-			return;
-		}
-		LOGGER.info("Authorized admin ids: {}", adminIds);
+        final List<Integer> adminIdsList = parseAdminIds(adminIds);
+        if (adminIdsList.isEmpty()) {
+            LOGGER.warn("Couldn't find admin ids");
+            return;
+        }
+        LOGGER.info("Authorized admin ids: {}", adminIdsList);
 
-		// Initialize API Context
-		ApiContextInitializer.init();
+        // Initialize API Context
+        ApiContextInitializer.init();
 
-		// Create new instance of TelegramBotsAPI
-		final TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+        // Create new instance of TelegramBotsAPI
+        final TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
 
-		// Register the default bot with token and username
-		final DefaultTelegramBot telegramBot = new DefaultTelegramBot(TOKEN, USERNAME);
-		telegramBotsApi.registerBot(telegramBot);
+        // Register the default bot with token and username
+        final DefaultTelegramBot telegramBot = new DefaultTelegramBot(token, username);
+        telegramBotsApi.registerBot(telegramBot);
 
-		// Register access level validator
-		telegramBot.setAccessLevelValidator(new AdminIdValidator(adminIds));
+        // Register access level validator
+        telegramBot.setAccessLevelValidator(new AdminIdValidator(adminIdsList));
 
-		// Register handlers
-		telegramBot.addHandler(new ExampleInlineMenuHandler());
-		telegramBot.addHandler(new HelpHandler());
-		telegramBot.addHandler(new StartCommandHandler());
-		telegramBot.addHandler(new WhoAmIHandler());
-		LOGGER.info("Initialization done");
-	}
+        // Register handlers
+        telegramBot.addHandler(new ExampleInlineMenuHandler());
+        telegramBot.addHandler(new HelpHandler());
+        telegramBot.addHandler(new StartCommandHandler());
+        telegramBot.addHandler(new WhoAmIHandler());
+        LOGGER.info("Initialization done");
+    }
 
-	private static List<Integer> parseAdminIds() {
-		final List<Integer> whitelistUserIds = new ArrayList<>();
-		for (String adminIdValue : ADMIN_IDS.split(",")) {
-			try {
-				final int adminId = Integer.parseInt(adminIdValue);
-				if (adminId < 0) {
-					LOGGER.warn("User ID expected, negative ids are reserved for groups!");
-					continue;
-				}
-				whitelistUserIds.add(adminId);
-			} catch (Exception e) {
-				LOGGER.warn("Failed to parse admin id {}", adminIdValue, e);
-			}
-		}
-		return whitelistUserIds;
-	}
+    private static List<Integer> parseAdminIds(String adminIds) {
+        final List<Integer> whitelistUserIds = new ArrayList<>();
+        for (String adminIdValue : adminIds.split(",")) {
+            try {
+                final int adminId = Integer.parseInt(adminIdValue);
+                if (adminId < 0) {
+                    LOGGER.warn("User ID expected, negative ids are reserved for groups!");
+                    continue;
+                }
+                whitelistUserIds.add(adminId);
+            } catch (Exception e) {
+                LOGGER.warn("Failed to parse admin id {}", adminIdValue, e);
+            }
+        }
+        return whitelistUserIds;
+    }
 }
