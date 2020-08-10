@@ -22,7 +22,7 @@ dependencies {
 
     compile(group: 'com.github.unafraid.telegram-apis', name: 'CoreAPI', version: '1.0.8')
     compile(group: 'com.github.unafraid.telegram-apis', name: 'InlineMenuAPI', version: '1.0.8')
-    compile(group: "org.telegram", name: "telegrambots", version: "4.8") // Telegram Bots API
+    compile(group: "org.telegram", name: "telegrambots", version: "4.9.1") // Telegram Bots API
     testCompile(group: "junit", name: "junit", version: "4.12")
 }
 
