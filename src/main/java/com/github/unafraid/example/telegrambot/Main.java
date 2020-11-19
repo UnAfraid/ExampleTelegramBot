@@ -8,8 +8,8 @@ import com.github.unafraid.example.telegrambot.validators.AdminIdValidator;
 import com.github.unafraid.telegrambot.bots.DefaultTelegramBot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +44,8 @@ public class Main {
         }
         LOGGER.info("Authorized admin ids: {}", adminIdsList);
 
-        // Initialize API Context
-        ApiContextInitializer.init();
-
         // Create new instance of TelegramBotsAPI
-        final TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+        final TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 
         // Register the default bot with token and username
         final DefaultTelegramBot telegramBot = new DefaultTelegramBot(token, username);

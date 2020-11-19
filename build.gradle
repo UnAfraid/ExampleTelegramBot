@@ -20,9 +20,9 @@ dependencies {
     runtime(group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "2.13.1")
     runtime(group: "org.apache.logging.log4j", name: "log4j-core", version: "2.13.1")
 
-    compile(group: 'com.github.unafraid.telegram-apis', name: 'CoreAPI', version: '1.0.8')
-    compile(group: 'com.github.unafraid.telegram-apis', name: 'InlineMenuAPI', version: '1.0.8')
-    compile(group: "org.telegram", name: "telegrambots", version: "4.9.1") // Telegram Bots API
+    compile(group: 'com.github.unafraid.telegram-apis', name: 'CoreAPI', version: '1.0.9')
+    compile(group: 'com.github.unafraid.telegram-apis', name: 'InlineMenuAPI', version: '1.0.9')
+    compile(group: "org.telegram", name: "telegrambots", version: "5.0.1") // Telegram Bots API
     testCompile(group: "junit", name: "junit", version: "4.12")
 }
 
