@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: "java"
+apply plugin: "java-library"
 apply plugin: "distribution"
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -17,13 +18,13 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    runtime(group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "2.13.1")
-    runtime(group: "org.apache.logging.log4j", name: "log4j-core", version: "2.13.1")
+    implementation(group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "2.13.1")
+    implementation(group: "org.apache.logging.log4j", name: "log4j-core", version: "2.13.1")
 
-    compile(group: 'com.github.unafraid.telegram-apis', name: 'CoreAPI', version: '1.0.9')
-    compile(group: 'com.github.unafraid.telegram-apis', name: 'InlineMenuAPI', version: '1.0.9')
-    compile(group: "org.telegram", name: "telegrambots", version: "5.0.1") // Telegram Bots API
-    testCompile(group: "junit", name: "junit", version: "4.12")
+    api(group: 'com.github.unafraid.telegram-apis', name: 'CoreAPI', version: '1.0.9')
+    api(group: 'com.github.unafraid.telegram-apis', name: 'InlineMenuAPI', version: '1.0.9')
+    api(group: "org.telegram", name: "telegrambots", version: "5.0.1") // Telegram Bots API
+    testImplementation(group: "junit", name: "junit", version: "4.12")
 }
 
 jar {
@@ -33,7 +34,7 @@ jar {
                 "Built-By": System.getProperty("user.name"),
                 // Update with your main class example below:
                 "Main-Class": "com.github.unafraid.example.telegrambot.Main",
-                "Class-Path": configurations.runtime.collect({ "lib/" + it.getName() }).join(" ")
+                "Class-Path": configurations.runtimeClasspath.collect({ "lib/" + it.getName() }).join(" ")
         )
     }
 }
@@ -50,7 +51,7 @@ distributions {
     main {
         contents {
             into("lib") {
-                from(configurations.runtime)
+                from(configurations.runtimeClasspath)
             }
             from(jar)
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
