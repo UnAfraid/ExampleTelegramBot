@@ -3,6 +3,7 @@ package com.github.unafraid.example.telegrambot;
 import com.github.unafraid.example.telegrambot.handlers.ExampleInlineMenuHandler;
 import com.github.unafraid.example.telegrambot.handlers.HelpHandler;
 import com.github.unafraid.example.telegrambot.handlers.StartCommandHandler;
+import com.github.unafraid.example.telegrambot.handlers.TestHandler;
 import com.github.unafraid.example.telegrambot.handlers.WhoAmIHandler;
 import com.github.unafraid.example.telegrambot.validators.AdminIdValidator;
 import com.github.unafraid.telegrambot.bots.DefaultTelegramBot;
@@ -59,6 +60,7 @@ public class Main {
         telegramBot.addHandler(new HelpHandler());
         telegramBot.addHandler(new StartCommandHandler());
         telegramBot.addHandler(new WhoAmIHandler());
+        telegramBot.addHandler(new TestHandler());
         LOGGER.info("Initialization done");
     }
 

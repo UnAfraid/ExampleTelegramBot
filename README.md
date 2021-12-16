@@ -52,6 +52,8 @@ Alternatively you can run the example from source
     ```
 2. Build the source
     ```shell script
+   # Note: If you want all of the dependencies to be packaged along with the application use installShadowDist instead of installDist
+    
    # For Windows
     gradlew.bat installDist
 
