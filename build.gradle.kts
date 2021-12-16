@@ -1,5 +1,5 @@
 plugins {
-    id("com.github.johnrengelman.shadow") version "5.2.0"
+    id("com.github.johnrengelman.shadow") version "7.1.1"
     java
     `java-library`
     distribution
@@ -29,7 +29,7 @@ dependencies {
     api("org.telegram:telegrambots-meta:5.4.0.1")
     api("com.github.unafraid.telegram-apis:InlineMenuAPI:1.0.12")
     api("org.jetbrains:annotations:22.0.0")
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
 }
 
 configurations.all {

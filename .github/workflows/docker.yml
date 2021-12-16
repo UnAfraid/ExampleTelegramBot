@@ -29,6 +29,6 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: docker.pkg.github.com/unafraid/exampletelegrambot/bot
-        registry: "docker.pkg.github.com"
-        username: ${{ secrets.PACKAGES_USERNAME }}
-        password: ${{ secrets.PACKAGES_TOKEN }}
+        registry: docker.pkg.github.com
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
