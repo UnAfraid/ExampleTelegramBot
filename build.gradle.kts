@@ -24,8 +24,8 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.16.0")
-    runtimeOnly("org.apache.logging.log4j:log4j-core:2.16.0")
+    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.17.0")
+    runtimeOnly("org.apache.logging.log4j:log4j-core:2.17.0")
     api("org.telegram:telegrambots-meta:5.4.0.1")
     api("com.github.unafraid.telegram-apis:InlineMenuAPI:1.0.12")
     api("org.jetbrains:annotations:22.0.0")
@@ -35,7 +35,7 @@ dependencies {
 configurations.all {
     resolutionStrategy.eachDependency {
         if (requested.group == "org.apache.logging.log4j") {
-            useVersion("2.16.0")
+            useVersion("2.17.0")
         }
     }
 }
