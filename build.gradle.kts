@@ -26,7 +26,7 @@ repositories {
 dependencies {
     runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.17.0")
     runtimeOnly("org.apache.logging.log4j:log4j-core:2.17.0")
-    api("org.telegram:telegrambots-meta:5.4.0.1")
+    api("org.telegram:telegrambots-meta:5.7.1")
     api("com.github.unafraid.telegram-apis:InlineMenuAPI:1.0.12")
     api("org.jetbrains:annotations:22.0.0")
     testImplementation("junit:junit:4.13.2")
