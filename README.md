@@ -35,7 +35,7 @@ First create new file called .env with the content mentioned [Environment Variab
 3. If bot is working correctly you should see the following logs
     ```shell script
     Attaching to example_telegram_bot
-    example_telegram_bot | [20:30:06] [INFO] Main: Initializing ** Your bot name here** ...
+    example_telegram_bot | [20:30:06] [INFO] Main: Initializing **Your bot name here** ...
     example_telegram_bot | [20:30:06] [INFO] Main: Authorized admin ids: [**Your ids here**]
     example_telegram_bot | [20:30:07] [INFO] Main: Initialization done
     ```
@@ -82,7 +82,7 @@ Alternatively you can run the example from source
     ```
  4. If bot is working correctly you should see the following logs
     ```shell script
-    [20:30:06] [INFO] Main: Initializing ** Your bot name here** ...
+    [20:30:06] [INFO] Main: Initializing **Your bot name here** ...
     [20:30:06] [INFO] Main: Authorized admin ids: [**Your ids here**]
     [20:30:07] [INFO] Main: Initialization done
     ```
