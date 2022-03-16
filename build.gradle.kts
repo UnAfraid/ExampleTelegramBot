@@ -24,11 +24,11 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.17.0")
-    runtimeOnly("org.apache.logging.log4j:log4j-core:2.17.0")
+    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.17.1")
+    runtimeOnly("org.apache.logging.log4j:log4j-core:2.17.1")
     api("org.telegram:telegrambots-meta:5.7.1")
-    api("com.github.unafraid.telegram-apis:InlineMenuAPI:1.0.12")
-    api("org.jetbrains:annotations:22.0.0")
+    api("com.github.unafraid.telegram-apis:InlineMenuAPI:1.0.13")
+    api("org.jetbrains:annotations:23.0.0")
     testImplementation("junit:junit:4.13.2")
 }
 
@@ -50,7 +50,7 @@ tasks.withType<Jar> {
         attributes["Built-By"] = System.getProperty("user.name")
         attributes["Implementation-URL"] = "https://github.com/UnAfraid/SpringTelegramBot/"
         attributes["Main-Class"] = "com.github.unafraid.example.telegrambot.Main"
-        attributes["Class-Path"] = configurations.runtimeClasspath.get().joinToString(" ") { it.name }
+        attributes["Class-Path"] = configurations.runtimeClasspath.get().joinToString(" ") { "lib/" + it.name }
     }
 }
 
