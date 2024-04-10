@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-slim as builder
+FROM eclipse-temurin:17-jdk-alpine as builder
 ENV PROJECT_NAME=ExampleTelegramBot
 
 ENV GRADLE_OPTS="-Dorg.gradle.daemon=false"
@@ -10,7 +10,7 @@ COPY . .
 
 RUN ./gradlew clean installDist
 
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:17-jre-alpine
 ENV PROJECT_NAME=ExampleTelegramBot
 
 WORKDIR /app

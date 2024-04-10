@@ -12,8 +12,9 @@ import com.github.unafraid.example.telegrambot.validators.AdminIdValidator;
 import com.github.unafraid.telegrambot.bots.DefaultTelegramBot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import org.telegram.telegrambots.client.okhttp.OkHttpTelegramClient;
+import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;
+import org.telegram.telegrambots.meta.generics.TelegramClient;
 
 /**
  * @author UnAfraid
@@ -23,20 +24,16 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		final String token = System.getenv("EXAMPLE_TG_BOT_TOKEN");
-		final String username = System.getenv("EXAMPLE_TG_BOT_USERNAME");
 		final String adminIds = System.getenv("EXAMPLE_TG_BOT_ADMIN_IDS");
 		if (token == null || token.isBlank()) {
 			LOGGER.warn("EXAMPLE_TG_BOT_TOKEN is not defined!");
-			return;
-		} else if (username == null || username.isBlank()) {
-			LOGGER.warn("EXAMPLE_TG_BOT_USERNAME is not defined!");
 			return;
 		} else if (adminIds == null || adminIds.isBlank()) {
 			LOGGER.warn("EXAMPLE_TG_BOT_ADMIN_IDS is not defined!");
 			return;
 		}
 		
-		LOGGER.info("Initializing {} ...", username);
+		LOGGER.info("Initializing bot ...");
 		
 		final Set<Long> adminIdsList = parseAdminIds(adminIds);
 		if (adminIdsList.isEmpty()) {
@@ -44,17 +41,20 @@ public class Main {
 			return;
 		}
 		LOGGER.info("Authorized admin ids: {}", adminIdsList);
-		
+
+		// Create telegram client implementation
+		final TelegramClient telegramClient = new OkHttpTelegramClient(token);
+
 		// Create new instance of TelegramBotsAPI
-		final TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-		
+		TelegramBotsLongPollingApplication botsApplication = new TelegramBotsLongPollingApplication();
+
 		// Register the default bot with token and username
-		final DefaultTelegramBot telegramBot = new DefaultTelegramBot(token, username);
-		telegramBotsApi.registerBot(telegramBot);
-		
+		final DefaultTelegramBot telegramBot = new DefaultTelegramBot(telegramClient);
+		botsApplication.registerBot(token, telegramBot);
+
 		// Register access level validator
 		telegramBot.setAccessLevelValidator(new AdminIdValidator(adminIdsList));
-		
+
 		// Register handlers
 		telegramBot.addHandler(new ExampleInlineMenuHandler());
 		telegramBot.addHandler(new HelpHandler());
@@ -62,8 +62,17 @@ public class Main {
 		telegramBot.addHandler(new WhoAmIHandler());
 		telegramBot.addHandler(new TestHandler());
 		LOGGER.info("Initialization done");
+
+		// Register shutdown hook to close bots application
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			try {
+				botsApplication.close();
+			} catch (Exception ex) {
+				LOGGER.error("failed to close bots application: ", ex);
+			}
+		}));
 	}
-	
+
 	private static Set<Long> parseAdminIds(String adminIds) {
 		final Set<Long> whitelistUserIds = new HashSet<>();
 		for (String adminIdValue : adminIds.split(",")) {

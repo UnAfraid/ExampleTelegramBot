@@ -72,11 +72,11 @@ public class ExampleInlineMenuHandler extends AbstractInlineHandler {
 	
 	private boolean handleButtonClick(InlineCallbackEvent event) throws TelegramApiException {
 		final InlineUserData userData = event.getContext().getUserData(event.getQuery().getFrom().getId());
-		final AnswerCallbackQuery answer = new AnswerCallbackQuery();
-		answer.setCallbackQueryId(event.getQuery().getId());
-		answer.setShowAlert(true);
-		answer.setText("You've clicked at " + userData.getActiveButton().getName());
-		event.getBot().execute(answer);
+		event.getTelegramClient().execute(AnswerCallbackQuery.builder().
+				callbackQueryId(event.getQuery().getId()).
+				showAlert(true).
+				text("You've clicked at " + userData.getActiveButton().getName()).
+				build());
 		return true;
 	}
 }

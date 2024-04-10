@@ -1,7 +1,7 @@
 # Example Telegram Bot [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/UnAfraid/ExampleTelegramBot)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FUnAfraid%2FExampleTelegramBot%2Fbadge&style=flat)](https://actions-badge.atrox.dev/UnAfraid/ExampleTelegramBot/goto) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=UnAfraid_ExampleTelegramBot&metric=alert_status)](https://sonarcloud.io/dashboard?id=UnAfraid_ExampleTelegramBot) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=UnAfraid_ExampleTelegramBot&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=UnAfraid_ExampleTelegramBot) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=UnAfraid_ExampleTelegramBot&metric=security_rating)](https://sonarcloud.io/dashboard?id=UnAfraid_ExampleTelegramBot) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=UnAfraid_ExampleTelegramBot&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=UnAfraid_ExampleTelegramBot) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=UnAfraid_ExampleTelegramBot&metric=bugs)](https://sonarcloud.io/dashboard?id=UnAfraid_ExampleTelegramBot)
 
-This repository contains an example of telegram bot written in Java (11 and above)
+This repository contains an example of telegram bot written in Java (17 and above)
 
 Current version supports the following commands:
 * /help - Displays help about all or specified command
@@ -12,7 +12,6 @@ Current version supports the following commands:
 ### Configuration
 Configuration is supplied through Environment Variables:
 ```env
-EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
 EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
 EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
 ```
@@ -65,12 +64,10 @@ Alternatively you can run the example from source
     # Set Environment Variables
    
     # For Windows
-    set EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
     set EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
     set EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
 
     # For Linux/Mac
-    export EXAMPLE_TG_BOT_USERNAME=ExampleTelegramBot # The bot name from BotFather
     export EXAMPLE_TG_BOT_TOKEN=123455:abcd.. # The token from BotFather
     export EXAMPLE_TG_BOT_ADMIN_IDS=123456 # User ids separated by comma, allowing them to access /menu (You can obtain that id by typing /whoami)
     
