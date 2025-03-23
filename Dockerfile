@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine as builder
+FROM eclipse-temurin:17-jdk-alpine AS builder
 ENV PROJECT_NAME=ExampleTelegramBot
 
 ENV GRADLE_OPTS="-Dorg.gradle.daemon=false"
